@@ -20,7 +20,7 @@ class PageController extends Controller
 
     public function home()
     {
-        $latest_article = Article::latest()->first();
-        return view('Frontend.home',compact('latest_article'));
+        $latest_articles = Article::where("status", true)->latest()->take(2)->get();
+        return view('Frontend.home',compact('latest_articles'));
     }
 }
