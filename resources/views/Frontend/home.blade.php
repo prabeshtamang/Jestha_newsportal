@@ -6,7 +6,7 @@
                     <h1 class="text-5xl font-semibold py-5">{{ $latest_article->title }}</h1>
                 </div>
                 <div>
-                    <img class="pt-3 " src="{{ asset(Storage::url($latest_article->image)) }}" alt="news">
+                    <img class="pt-3 w-full" src="{{ asset(Storage::url($latest_article->image)) }}" alt="news">
                 </div>
             @empty
                 <p class="text-gray-500 py-5">No articles available.</p>
