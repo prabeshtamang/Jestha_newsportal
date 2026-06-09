@@ -5,7 +5,7 @@
                 <img class="h-[80px]" src="https://sudamhub.com/images/logo1.png" alt="sudam-hub">
             </div>
             <div class="text-(--primary-dark) text-xl">
-                शुक्रबार, ०८ जेठ २०८३
+                {{toNepaliDate(now()->format('Y-m-d'))}}
                 <div class="bg-(--primary) h-[4px] -skew-y-3">
 
                 </div>

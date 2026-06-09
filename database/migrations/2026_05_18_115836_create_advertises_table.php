@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('redirect_link');
             $table->boolean('status')->default(true);
             $table->string('company_name');
+            $table->date('expiry_date');
             $table->timestamps();
         });
     }

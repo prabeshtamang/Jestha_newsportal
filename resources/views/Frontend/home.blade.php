@@ -44,7 +44,7 @@
                                             <h3>{{ $article->title }}</h3>
                                             <small>
                                                 <i class="fa-solid fa-calendar-days"></i>
-                                                {{ $article->created_at->format('M d, Y') }}
+                                                {{ toNepaliDate($article->created_at->format('Y-m-d')) }}
                                             </small>
                                         </div>
                                     </div>
