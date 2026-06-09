@@ -1,4 +1,4 @@
-<header class="py-5">
+<header class="pt-5 sticky z-50 top-0 bg-white">
     <div class="container">
         <div class="flex items-center justify-between">
             <div>
@@ -15,9 +15,18 @@
     <div class=" bg-(--primary) p-4 mt-2">
         <div class=" flex items-center justify-between container">
             <nav class="flex items-center gap-5 text-white font-semibold text-lg">
-                <a class="hover:text-(--primary-dark) duration-300 transition-all" href="">गृहपृष्ठ</a>
+
+
+                {{--
+                  Missing part of day-19 is the below  route  of home and category
+                --}}
+
+
+                <a class="hover:text-(--primary-dark) duration-300 transition-all"
+                    href="{{ route('home') }}">गृहपृष्ठ</a>
                 @foreach ($categories as $category)
-                    <a class="hover:text-(--primary-dark) duration-300 transition-all" href="">{{$category->title}}</a>
+                    <a class="hover:text-(--primary-dark) duration-300 transition-all"
+                        href="{{ route('category', $category->slug) }}">{{ $category->title }}</a>
                 @endforeach
             </nav>
 

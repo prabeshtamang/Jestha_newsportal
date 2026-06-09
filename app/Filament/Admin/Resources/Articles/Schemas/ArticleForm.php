@@ -23,16 +23,16 @@ class ArticleForm
                     ->columnSpanFull()
                     ->Schema([
                         Select::make('categories')
-                        ->multiple()
-                        ->searchable()
-                        ->preload()
-                        ->relationship('categories','title'),
+                            ->multiple()
+                            ->searchable()
+                            ->preload()
+                            ->relationship('categories', 'title'),
                         TextInput::make('title')
                             ->required(),
                         TextInput::make('slug')
                             ->required(),
                         RichEditor::make('description')
-                        ->columnSpanFull()
+                            ->columnSpanFull()
                             ->required(),
                         TextInput::make('author_name')
                             ->required(),
@@ -42,8 +42,8 @@ class ArticleForm
                             ->required(),
                     ]),
                 Section::make()
-                ->columns(2)
-                ->columnSpanFull()
+                    ->columns(2)
+                    ->columnSpanFull()
                     ->schema([
                         TextInput::make('meta_title')
                             ->default(null),

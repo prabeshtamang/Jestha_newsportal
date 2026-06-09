@@ -21,6 +21,12 @@ class PageController extends Controller
     public function home()
     {
         $latest_articles = Article::where("status", true)->latest()->take(2)->get();
-        return view('Frontend.home',compact('latest_articles'));
+        return view('Frontend.home', compact('latest_articles'));
+    }
+
+    public function category($slug)
+    {
+        $category=Category::where("slug",$slug )->latest()->first();
+        return view('Frontend.category', compact('category'));
     }
 }

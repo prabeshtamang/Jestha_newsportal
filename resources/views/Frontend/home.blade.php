@@ -6,7 +6,7 @@
                     <h1 class="text-5xl font-semibold py-5">{{ $latest_article->title }}</h1>
                 </div>
                 <div>
-                    <img class="pt-3 w-full" src="{{ asset(Storage::url($latest_article->image)) }}" alt="news">
+                    <img class="pt-3 w-full object-cover" src="{{ asset(Storage::url($latest_article->image)) }}" alt="news">
                 </div>
             @empty
                 <p class="text-gray-500 py-5">No articles available.</p>
@@ -30,7 +30,7 @@
                     @if ($latest_cat_art)
                         <div class="grid grid-cols-3 gap-4">
                             <div class="col-span-2">
-                                <img src="{{ asset(Storage::url($latest_cat_art->image)) }}" alt="{{ $latest_cat_art->title }}">
+                                <img class="w-full object-cover" src="{{ asset(Storage::url($latest_cat_art->image)) }}" alt="{{ $latest_cat_art->title }}">
                                 <h3 class="text-2xl font-semibold pt-3 text-(--text)">
                                     {{ $latest_cat_art->title }}
                                 </h3>
@@ -61,3 +61,5 @@
         </div>
     </section>
 </x-frontend-layout>
+
+
