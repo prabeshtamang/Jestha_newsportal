@@ -30,7 +30,7 @@
                 @endforeach
             </nav>
 
-            <form class="">
+            <form class="w-sm" action="{{route('search')}}" method="get">
                 <label for="search" class="block mb-2.5 text-sm font-medium text-heading sr-only ">Search</label>
                 <div class="relative">
                     <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -40,10 +40,10 @@
                                 d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
-                    <input type="search" id="search"
+                    <input type="search" id="search" name="q"
                         class="block w-full p-3 ps-9 bg-white border border-(--primary) text-heading text-sm rounded-base focus:ring-brand focus:border-(--primary-dark) shadow-xs placeholder:text-(--primary)"
                         placeholder="Search" required />
-                    <button type="button"
+                    <button type="submit"
                         class="absolute end-1.5 bottom-1.5 text-white bg-(--primary) hover:bg-(--primary-dark) box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded text-xs px-3 py-1.5 focus:outline-none">Search</button>
                 </div>
             </form>
