@@ -38,4 +38,10 @@ class PageController extends Controller
         $advertises = Advertise::where("expiry_date", ">=", time())->get();
         return view('Frontend.search', compact('articles', 'advertises', 'q'));
     }
+     public function article($slug)
+    {
+        $article = Article::where("slug", $slug)->first();
+        $advertises = Advertise::where("expiry_date", ">=", time())->get();
+        return view('Frontend.article', compact('article', 'advertises'));
+    }
 }
