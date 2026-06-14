@@ -17,6 +17,18 @@
         </div>
     </section>
 
+    <section class="container">
+        <div class="flex items-center justify-center text-center">
+            @foreach ($advertises as $advertise)
+                <div class="m-2 hover:scale-101 shadow-md hover:shadow-md duration-300 transition-all">
+                    <a href="{{ $advertise->redirect_link }}" target="-blank">
+                        <img src="{{ asset(Storage::url($advertise->banner)) }}" alt="{{ $advertise->company_name }}">
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </section>
+
     <section>
         <div class="container">
             @foreach ($categories as $category)
@@ -75,6 +87,8 @@
                     @endif
                 </div>
             @endforeach
+
         </div>
+
     </section>
 </x-frontend-layout>

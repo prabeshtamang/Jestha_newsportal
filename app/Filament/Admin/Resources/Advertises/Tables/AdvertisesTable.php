@@ -20,8 +20,7 @@ class AdvertisesTable
                 ImageColumn::make('banner'),
                 TextColumn::make('redirect_link')
                     ->searchable(),
-               ToggleColumn::make('status')
-                    ,
+               ToggleColumn::make('status'),
                 TextColumn::make('company_name')
                     ->searchable(),
                 TextColumn::make('created_at')

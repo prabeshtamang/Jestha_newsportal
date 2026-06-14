@@ -22,7 +22,12 @@ class PageController extends Controller
     public function home()
     {
         $latest_articles = Article::where("status", true)->latest()->take(2)->get();
-        return view('Frontend.home', compact('latest_articles'));
+        $advertises = Advertise::where("status", true)
+            ->where("expiry_date", ">=", time())
+            ->latest()
+            ->take(3)
+            ->get();
+        return view('Frontend.home', compact('latest_articles', 'advertises'));
     }
 
     public function category($slug)
@@ -38,7 +43,7 @@ class PageController extends Controller
         $advertises = Advertise::where("expiry_date", ">=", time())->get();
         return view('Frontend.search', compact('articles', 'advertises', 'q'));
     }
-     public function article($slug)
+    public function article($slug)
     {
         $article = Article::where("slug", $slug)->first();
         $advertises = Advertise::where("expiry_date", ">=", time())->get();
