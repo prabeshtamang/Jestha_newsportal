@@ -28,6 +28,7 @@
                     <a class="hover:text-(--primary-dark) duration-300 transition-all"
                         href="{{ route('category', $category->slug) }}">{{ $category->title }}</a>
                 @endforeach
+                <a href="{{route('contact')}}">contact</a>
             </nav>
 
             <form class="w-sm" action="{{route('search')}}" method="get">
