@@ -24,3 +24,5 @@ class FrontendHeader extends Component
         return view('components.frontend-header');
     }
 }
+
+
