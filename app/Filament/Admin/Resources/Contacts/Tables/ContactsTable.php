@@ -6,6 +6,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Table;
 
 class ContactsTable
@@ -25,6 +26,7 @@ class ContactsTable
                     ->searchable(),
                 TextColumn::make('banner')
                     ->searchable(),
+                ToggleColumn::make('has_paid'),
                 TextColumn::make('service_type')
                     ->badge(),
                 TextColumn::make('created_at')

@@ -8,6 +8,7 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\View;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -52,5 +53,50 @@ class PageController extends Controller
         return view('Frontend.article', compact('article', 'advertises'));
     }
 
-   
+
+    //contact page heree
+
+    public function contact()
+    {
+        return view('Frontend.contact');
+    }
+
+    public function contact_store(Request $request)
+    {
+        $contact = new Contact();
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->phone = $request->phone;
+        $contact->company_name = $request->company_name;
+        $contact->service_type = $request->service_type;
+        $contact->message = $request->message;
+        $file = $request->banner;
+        if ($file) {
+            $file_name = time() . "." . $file->getClientOriginalExtension();   //hero.jpg
+            $file->move('/storage', $file_name);
+            $contact->banner = $file_name;
+        }
+        $contact->save();
+
+        $response = Http::withHeaders([
+            "Authorization" => "key " . env('KHALTI_KEY'),
+        ])->post(env('KHALTI_API',) . "/epayment/initiate/", [
+            "return_url" => route('khalti.redirect'),
+            "website_url" => route('home'),
+            "amount" => 500 * 100,
+            "purchase_order_id" => $contact->id,
+            "purchase_order_name" => $contact->name,
+        ]);
+
+
+        return redirect($response['payment_url']);
+    }
+
+    public function redirect(Request $request)
+    {
+        $contact = Contact::find($request ["purchase_order_id"]);
+        $contact->has_paid = true;
+        $contact->save();
+        return redirect()->route('home');
+    }
 }
