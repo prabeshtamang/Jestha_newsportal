@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ContactNotification;
 use App\Models\Advertise;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Contact;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\View;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -78,6 +81,9 @@ class PageController extends Controller
         }
         $contact->save();
 
+        $admin = User::first();
+        Mail::to($admin->email)->send(new ContactNotification($contact, $admin));
+
         $response = Http::withHeaders([
             "Authorization" => "key " . env('KHALTI_KEY'),
         ])->post(env('KHALTI_API',) . "/epayment/initiate/", [
@@ -94,7 +100,7 @@ class PageController extends Controller
 
     public function redirect(Request $request)
     {
-        $contact = Contact::find($request ["purchase_order_id"]);
+        $contact = Contact::find($request["purchase_order_id"]);
         $contact->has_paid = true;
         $contact->save();
         return redirect()->route('home');
