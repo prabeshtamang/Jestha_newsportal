@@ -28,4 +28,18 @@ class ApiController extends Controller
         $latest_articles = Article::where("status", true)->latest()->take(2)->get();
         return ArticleResource::collection($latest_articles);
     }
+
+    public function article($slug)
+    {
+        $article = Article::where("slug", $slug)->first();
+        return new ArticleResource($article);
+    }
+
+     public function search(Request $request)
+    {
+        $q = $request->q;
+        $articles = Article::where("title", "like", "%$q%")->get();
+        return ArticleResource::collection($articles);
+
+    }
 }
